@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/ScenarioBase.gd" type="Script" id=1]
+[ext_resource path="res://sprites/scenario/scenario_green.png" type="Texture" id=2]
+[ext_resource path="res://animations/Items/ItemPurple.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://animations/Items/ItemGreen.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://animations/Items/ItemRed.tres" type="SpriteFrames" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 767.994, 26.847 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 45.0053, 57.7769 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 45.0053, 57.7769 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 45.0053, 57.7769 )
+
+[node name="ScenarioBase" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 512, 600 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 256, 0 )
+shape = SubResource( 1 )
+
+[node name="SwitchAreas" type="Node2D" parent="."]
+position = Vector2( 30, 0 )
+
+[node name="Switch1" type="Area2D" parent="SwitchAreas"]
+position = Vector2( 18, 485 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="SwitchAreas/Switch1"]
+frames = ExtResource( 3 )
+animation = "spin"
+frame = 4
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchAreas/Switch1"]
+shape = SubResource( 2 )
+
+[node name="Switch2" type="Area2D" parent="SwitchAreas"]
+position = Vector2( 18, 305 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="SwitchAreas/Switch2"]
+frames = ExtResource( 4 )
+animation = "spin"
+frame = 6
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchAreas/Switch2"]
+shape = SubResource( 3 )
+
+[node name="Switch3" type="Area2D" parent="SwitchAreas"]
+position = Vector2( 18, 125 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="SwitchAreas/Switch3"]
+frames = ExtResource( 5 )
+animation = "spin"
+frame = 10
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchAreas/Switch3"]
+shape = SubResource( 4 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 767.133, 298.295 )
+scale = Vector2( 76.1267, 29.2428 )
+[connection signal="body_entered" from="SwitchAreas/Switch1" to="." method="_on_Switch1_body_entered"]
+[connection signal="body_entered" from="SwitchAreas/Switch2" to="." method="_on_Switch2_body_entered"]
+[connection signal="body_entered" from="SwitchAreas/Switch3" to="." method="_on_Switch3_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

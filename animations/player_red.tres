@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=2]
+
+[ext_resource path="res://sprites/jump/jumpRed.png" type="Texture" id=1]
+[ext_resource path="res://sprites/run/runRed1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/run/runRed2.png" type="Texture" id=3]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "run",
+"speed": 12.0
+} ]
